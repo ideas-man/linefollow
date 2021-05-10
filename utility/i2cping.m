@@ -3,28 +3,17 @@ function [ statuscode ] = i2cping( mypi, bus, adr )
 %   I2CPING(MYPI, BUS, ADR) pings I2C device with ADR address of the BUS
 %   bus of the MYPI connection with the targeted RaspberryPi board.
 %
-% -------------------------------------------------------------------------
-% | INPUT PARAMETER  |          DESCRIPTION             |       TYPE      |
-% -------------------------------------------------------------------------
-% |       mypi       | A connection from the MATLAB®    |  raspi object   |
-% |                  | software to the Raspberry Pi     |                 |
-% |                  | board.                           |                 |
-% -------------------------------------------------------------------------
-% |       bus        | The I2C bus ID.                  |      char       |
-% -------------------------------------------------------------------------
-% |       adr        | I2C device address.              |      char       |
-% -------------------------------------------------------------------------
-
-% -------------------------------------------------------------------------
-% | OUTPUT PARAMETER |     VALUE      |             MEANING               |
-% -------------------------------------------------------------------------
-% |    statuscode    |       0        | Required bus address not found.   |
-% |                  ------------------------------------------------------
-% |                  |       1        | Lost packages/response does not   |
-% |                  |                | match ping package.               |
-% |                  ------------------------------------------------------
-% |                  |       2        | Connection is stable.             |
-% -------------------------------------------------------------------------
+%   mypi: RasPi connection object. Type: raspi object.
+%
+%   bus: The I2C bus ID. Type: char.
+%
+%   adr: I2C device address. Type: char.
+%   
+%   statuscode: Status code. 0 - Required bus address not found.
+%                            1 - Lost packages/response does not match 
+%                                ping package.
+%                            2 - Connection is stable.
+%               Type: numeric.
 
 count = 0;
 enableI2C(mypi);

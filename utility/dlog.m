@@ -1,35 +1,25 @@
 function [ ] = dlog( logData, connData, MEData )
-%DLOG creates log file containing all necessary info for debug.
-%   DLOG(LOGDATA, CONNDATA, MEDATA) opens or creates new log file LOG.TXT. 
+%DLOG creates a log file.
+%   DLOG(LOGDATA, CONNDATA, MEDATA) opens or creates a new log file LOG.TXT. 
 %   It starts with a header containing data about connection to target
-%   RasPi and I2C interface connection. Then LOGDATA table follows, It 
+%   RasPi and I2C interface connection. Then the LOGDATA table follows, it 
 %   contains info about time, average turn angle, median X coordinate, 
 %   right and left motors DC, and low-level control system response values.
 %   It closes file with MExeption class identifier field. All timestamps
 %   are provided at INPUT_VAR(X,2) in CONNDATA and MEDATA inputs.
 %
-% -------------------------------------------------------------------------
-% | INPUT PARAMETER  |          DESCRIPTION             |       TYPE      |
-% -------------------------------------------------------------------------
-% |     logData      | Array that contains date and     |  n-by-6 string  |
-% |                  | time of iteration (see DATETIME  |                 |
-% |                  | for more info, average turn      |                 |
-% |                  | angle and median X coordinate    |                 |
-% |                  | (see TURNANGLE.M for more info), |                 |
-% |                  | right and left motors dutyCycle  |                 |
-% |                  | see (DUTYCYCLE.M for more info), |                 |
-% |                  | and IP adress of target RasPi    |                 |
-% |                  | board.                           |                 |
-% -------------------------------------------------------------------------
-% |     connData     | IP-adress of the target RasPi    |  2-by-4 string  |
-% |                  | board. I2C bus ID and device     |                 |
-% |                  | address, and i2cping.m output    |                 |
-% |                  | code (See I2CPING.M for more info|                 |
-% |                  | with corresponding timestamps.   |                 |
-% -------------------------------------------------------------------------
-% |      MEData      | MExeption class error identifier |  2-by-1 string  |
-% |                  | with timestamp                   |                 |
-%--------------------------------------------------------------------------
+%   logData: Array that contains the date and time of iteration time of 
+%            iteration (see DATETIME for more info), average turn angle
+%            and median X coordinate (see TURNANGLE.M for more info),
+%            right and left motors dutyCycle see (DUTYCYCLE.M for more info),
+%            and IP adress of target RasPi board. Type: (N, 6) string.
+%
+%   connData: IP-adress of the target RasPi board. I2C bus ID and device
+%             address, and I2CPING.M output code (See I2CPING.M for more 
+%             info with corresponding timestamps. Type: (2, 4) string.
+%
+%   MEData: MExeption class error identifier with timestamp. 
+%           Type: (2, 1) string.
 
 fileID = fopen('log.txt','a+');
 fprintf(fileID,'%20s : Connection established succsessfully with %18s\r\n',...
